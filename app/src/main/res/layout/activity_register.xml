@@ -130,7 +130,7 @@
                     android:drawableStart="@drawable/ic_phone"
                     android:drawablePadding="10dp"
                     android:hint="Nomor HP"
-                    android:inputType="textPassword"
+                    android:inputType="number"
                     android:padding="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -255,6 +255,7 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/btnRegister"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="20dp"

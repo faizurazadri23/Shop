@@ -12,4 +12,8 @@
     <string name="provinsi">Provinsi</string>
     <string name="kota">Kota</string>
     <string name="sign_up">Sign Up</string>
+    <string name="enter_your_crential_login">Enter Your Crential Login</string>
+    <string name="welcome">Welcome!</string>
+    <string name="sign_in">Sign In</string>
+    <string name="belum_punya_akun">Belum Punya Akun ?</string>
 </resources>
