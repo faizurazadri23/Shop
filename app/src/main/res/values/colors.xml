@@ -10,4 +10,6 @@
     <color name="colorGray">#772B2B2B</color>
     <color name="colorPlatinum">#BAE5E5E5</color>
     <color name="colorGreen">#BA34F646</color>
+    <color name="orange">#ffa500</color>
+    <color name="colorRed">#f44336</color>
 </resources>

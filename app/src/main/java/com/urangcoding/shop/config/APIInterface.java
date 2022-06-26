@@ -1,5 +1,6 @@
 package com.urangcoding.shop.config;
 
+import com.urangcoding.shop.pojo.ImageSliderPojo;
 import com.urangcoding.shop.pojo.KotaPOJO;
 import com.urangcoding.shop.pojo.ProvinsiPOJO;
 import com.urangcoding.shop.pojo.UserCreatePojo;
@@ -39,4 +40,12 @@ public interface APIInterface {
     @FormUrlEncoded
     @POST("api_project3/index.php?folder=user&file=login")
     Call<UserCreatePojo> userLogin(@FieldMap Map<String, String> fields);
+
+    /**
+     * API Interface Home Slider
+     **/
+
+    @GET("api_project3/index.php?folder=home&file=sliders")
+    Call<ImageSliderPojo> getImageSlider (@Query("api_key") String api_key);
+
 }
