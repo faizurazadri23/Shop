@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
+import com.urangcoding.shop.adapter.SamsungAdapter;
 import com.urangcoding.shop.adapter.SliderImageAdapter;
 import com.urangcoding.shop.adapter.VivoAdapter;
 import com.urangcoding.shop.config.APIClient;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private int success = 0;
     private APIInterface apiInterface;
 
-    private RecyclerView rvVivo;
+    private RecyclerView rvVivo, rv_samsung;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageSlider = findViewById(R.id.imageSlider);
         rvVivo  = findViewById(R.id.rvVivo);
+        rv_samsung = findViewById(R.id.rvSamsung);
 
         sessionManager = new SessionManager(this);
         sessionManager.checkLogin();
@@ -97,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                         listItemVivo.add(md);
                     }
 
-                    //Toast.makeText(getApplicationContext(), "Total data" + listItemVivo.size() , Toast.LENGTH_LONG).show();
 
                     VivoAdapter vivoAdapter = new VivoAdapter(listItemVivo, getApplicationContext());
                     vivoAdapter.notifyDataSetChanged();
@@ -105,6 +106,33 @@ public class MainActivity extends AppCompatActivity {
                     rvVivo.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
                     rvVivo.setHasFixedSize(true);
                     rvVivo.setAdapter(vivoAdapter);
+
+                    /*
+                    Samsung
+                     */
+                    List<HomeProductPojo.Samsung> dataSamsung = response.body().getList_samsung();
+
+                    ArrayList<ProdukModel> listItemSamsung = new ArrayList<>();
+                    listItemSamsung.clear();
+
+
+
+                    for (HomeProductPojo.Samsung datasSamsung : dataSamsung){
+                        ProdukModel md = new ProdukModel(datasSamsung.getImage(),
+                                datasSamsung.getDeskripsi(),
+                                formatRupiah(Double.parseDouble(datasSamsung.getHarga())),
+                                datasSamsung.getSeller());
+
+                        listItemSamsung.add(md);
+                    }
+
+
+                    SamsungAdapter samsungAdapter = new SamsungAdapter(listItemSamsung, getApplicationContext());
+                    samsungAdapter.notifyDataSetChanged();
+
+                    rv_samsung.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+                    rv_samsung.setHasFixedSize(true);
+                    rv_samsung.setAdapter(samsungAdapter);
                 }else if (success==2){
                     sessionManager.logout();;
                 }

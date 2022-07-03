@@ -114,6 +114,53 @@
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/tvJudulSamsung"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="Samsung"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvJudulSamsungNext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="Next >>"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvSamsung"
+                        android:layout_below="@+id/tvJudulSamsungNext"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/list_item_produk_home"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
