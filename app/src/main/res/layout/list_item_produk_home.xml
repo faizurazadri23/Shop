@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp">
+
+            <ImageView
+                android:id="@+id/imgItem"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="140dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/gambar_product" />
+
+            <LinearLayout
+                android:id="@+id/linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgItem"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/tvNamaItem"
+                    android:text="Nama Produk"
+                    android:textColor="@color/black"
+                    android:singleLine="true"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tvHarga"
+                    android:layout_marginTop="5dp"
+                    android:text="Rp. 3.000.000"
+                    android:textColor="@color/colorRed"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/line"
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/line"
+                    android:layout_height="wrap_content"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imgSHop"
+                        android:layout_width="15dp"
+                        android:layout_marginEnd="3dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_storefront"
+                        android:layout_height="12dp" />
+
+                    <TextView
+                        android:id="@+id/tvSeller"
+                        android:singleLine="true"
+                        android:textColor="@color/colorGreen"
+                        android:textSize="12sp"
+                        android:layout_toEndOf="@id/imgSHop"
+                        android:text="Gudang HP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

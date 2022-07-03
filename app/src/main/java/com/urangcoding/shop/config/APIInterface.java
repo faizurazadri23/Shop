@@ -1,5 +1,6 @@
 package com.urangcoding.shop.config;
 
+import com.urangcoding.shop.pojo.HomeProductPojo;
 import com.urangcoding.shop.pojo.ImageSliderPojo;
 import com.urangcoding.shop.pojo.KotaPOJO;
 import com.urangcoding.shop.pojo.ProvinsiPOJO;
@@ -47,5 +48,12 @@ public interface APIInterface {
 
     @GET("api_project3/index.php?folder=home&file=sliders")
     Call<ImageSliderPojo> getImageSlider (@Query("api_key") String api_key);
+
+    /*
+    Product List Item Home
+     */
+
+    @GET("api_project3/index.php?folder=home&file=productItem")
+    Call<HomeProductPojo> getListProduct(@Query("api_key") String api_key);
 
 }

@@ -1,5 +1,6 @@
 package com.urangcoding.shop.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -49,7 +50,7 @@ public class SessionManager {
         if (!this.isLogin()) {
             Intent i = new Intent(context, LoginActivity.class);
             context.startActivity(i);
-            ((MainActivity) context).finish();
+            ((Activity) context).finish();
         }
     }
 
@@ -69,6 +70,6 @@ public class SessionManager {
         editor.commit();
         Intent i = new Intent(context, LoginActivity.class);
         context.startActivity(i);
-        ((LoginActivity) context).finish();
+        ((Activity) context).finish();
     }
 }
