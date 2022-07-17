@@ -53,7 +53,7 @@ public interface APIInterface {
     Product List Item Home
      */
 
-    @GET("api_project3/index.php?folder=home&file=productItem")
+    @GET("api_project3/index.php?folder=home&file=produkItem")
     Call<HomeProductPojo> getListProduct(@Query("api_key") String api_key);
 
 }

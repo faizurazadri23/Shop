@@ -5,15 +5,18 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
+import com.urangcoding.shop.adapter.OppoAdapter;
 import com.urangcoding.shop.adapter.SamsungAdapter;
 import com.urangcoding.shop.adapter.SliderImageAdapter;
 import com.urangcoding.shop.adapter.VivoAdapter;
+import com.urangcoding.shop.adapter.XiaomiAdapter;
 import com.urangcoding.shop.config.APIClient;
 import com.urangcoding.shop.config.APIInterface;
 import com.urangcoding.shop.model.ProdukModel;
@@ -42,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private int success = 0;
     private APIInterface apiInterface;
 
-    private RecyclerView rvVivo, rv_samsung;
+    private RecyclerView rvVivo, rv_samsung, rv_Oppo, rv_xiaomi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         imageSlider = findViewById(R.id.imageSlider);
         rvVivo  = findViewById(R.id.rvVivo);
         rv_samsung = findViewById(R.id.rvSamsung);
+        rv_Oppo = findViewById(R.id.rvOPPO);
+        rv_xiaomi = findViewById(R.id.rvXiaomi);
 
         sessionManager = new SessionManager(this);
         sessionManager.checkLogin();
@@ -71,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void listItemProduct(){
+
         Call<HomeProductPojo> homeProductPojoCall = apiInterface.getListProduct(api_key);
         homeProductPojoCall.enqueue(new Callback<HomeProductPojo>() {
             @Override
@@ -87,8 +93,6 @@ public class MainActivity extends AppCompatActivity {
 
                     ArrayList<ProdukModel> listItemVivo = new ArrayList<>();
                     listItemVivo.clear();
-
-
 
                     for (HomeProductPojo.Vivo datasVivo : dataVivo){
                         ProdukModel md = new ProdukModel(datasVivo.getImage(),
@@ -133,9 +137,68 @@ public class MainActivity extends AppCompatActivity {
                     rv_samsung.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
                     rv_samsung.setHasFixedSize(true);
                     rv_samsung.setAdapter(samsungAdapter);
+
+                     /*
+                    Oppo
+                     */
+                    List<HomeProductPojo.Oppo> dataOppo = response.body().getList_oppo();
+
+                    ArrayList<ProdukModel> listItemOppo = new ArrayList<>();
+                    listItemOppo.clear();
+
+
+
+                    for (HomeProductPojo.Oppo datasOppo : dataOppo){
+                        ProdukModel md = new ProdukModel(datasOppo.getImage(),
+                                datasOppo.getDeskripsi(),
+                                formatRupiah(Double.parseDouble(datasOppo.getHarga())),
+                                datasOppo.getSeller());
+
+                        listItemOppo.add(md);
+                    }
+
+
+                    OppoAdapter oppoAdapter = new OppoAdapter(listItemOppo, getApplicationContext());
+                    oppoAdapter.notifyDataSetChanged();
+
+                    rv_Oppo.setLayoutManager(new GridLayoutManager(MainActivity.this, 2, GridLayoutManager.HORIZONTAL, false));
+                    rv_Oppo.setHasFixedSize(true);
+                    rv_Oppo.setAdapter(oppoAdapter);
+
+                     /*
+                    Xiaomi
+                     */
+                    List<HomeProductPojo.Xiaomi> dataXiaomi = response.body().getList_xiaomi();
+
+                    ArrayList<ProdukModel> listItemXiaomi = new ArrayList<>();
+                    listItemXiaomi.clear();
+
+
+
+                    for (HomeProductPojo.Xiaomi datasXiaomi : dataXiaomi){
+                        ProdukModel md = new ProdukModel(datasXiaomi.getImage(),
+                                datasXiaomi.getDeskripsi(),
+                                formatRupiah(Double.parseDouble(datasXiaomi.getHarga())),
+                                datasXiaomi.getSeller());
+
+                        listItemXiaomi.add(md);
+                    }
+
+
+                    XiaomiAdapter xiaomiAdapter = new XiaomiAdapter(listItemXiaomi, getApplicationContext());
+                    xiaomiAdapter.notifyDataSetChanged();
+
+                    rv_xiaomi.setLayoutManager(new GridLayoutManager(MainActivity.this, 2, GridLayoutManager.HORIZONTAL, false));
+                    rv_xiaomi.setHasFixedSize(true);
+                    rv_xiaomi.setAdapter(xiaomiAdapter);
                 }else if (success==2){
-                    sessionManager.logout();;
+                    sessionManager.logout();
+
+                }else {
+                    Toast.makeText(getApplicationContext(), "Error Code " + response.code(), Toast.LENGTH_LONG).show();
                 }
+
+
             }
 
             @Override
